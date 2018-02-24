@@ -1,8 +1,10 @@
-# roomba_wall_v2
+# roomba_wall_v3
 
-An AVR device, based on ATTiny85, to transmit a virtual wall signal for an iRobot Roomba
+# WIP - see "develop" branch for current work; currently "master" is the "v2" state of things
 
-<img src="https://github.com/Petezah/roomba_wall_v2/blob/master/roomba_wall_v2.jpg"/>
+An AVR device, based on ATTiny45, to transmit a virtual wall signal for an iRobot Roomba
+
+<img src="https://github.com/Petezah/roomba_wall_v3/blob/master/roomba_wall_v2.jpg"/>
 
 ## Folder layout
 
