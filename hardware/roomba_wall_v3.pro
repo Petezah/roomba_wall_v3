@@ -1,4 +1,4 @@
-update=2/27/2018 9:12:55 PM
+update=2/27/2018 9:22:52 PM
 version=1
 last_client=kicad
 [pcbnew]
@@ -72,3 +72,9 @@ LibName30=opto
 LibName31=atmel
 LibName32=contrib
 LibName33=valves
+LibName34=C:/Users/peter/Source/Repos/kicad-libs/petezah
+LibName35=C:/Users/peter/Source/Repos/kicad-libs/petezah-conn
+LibName36=C:/Users/peter/Source/Repos/kicad-libs/petezah-devices
+LibName37=C:/Users/peter/Source/Repos/kicad-libs/petezah-ic
+LibName38=C:/Users/peter/Source/Repos/kicad-libs/petezah-jumpers
+LibName39=C:/Users/peter/Source/Repos/kicad-libs/petezah-power
