@@ -1,4 +1,4 @@
-(kicad_pcb (version 4) (host pcbnew 4.0.6)
+(kicad_pcb (version 4) (host pcbnew 4.0.7)
 
   (general
     (links 31)
@@ -14,11 +14,11 @@
 
   (page A4)
   (title_block
-    (title "Roomba Christmas Tree Barrier")
-    (date 2018-01-03)
-    (rev B)
+    (title "Roomba Wall V3")
+    (date 2018-03-03)
+    (rev A)
     (company Petezah)
-    (comment 1 "(C) 2017 Peter Dunshee")
+    (comment 1 "(C) 2018 Peter Dunshee")
   )
 
   (layers
@@ -259,7 +259,7 @@
       (net 10 "Net-(U1-Pad3)"))
   )
 
-  (module kicad-libs:CR2032-THRU (layer F.Cu) (tedit 5A99CBBC) (tstamp 5A9D07F2)
+  (module lib_fp:CR2032-THRU (layer F.Cu) (tedit 5A99CBBC) (tstamp 5A9B056E)
     (at 160.274 144.695001)
     (tags "cr2032 battery th")
     (path /5A96233E)
@@ -299,7 +299,7 @@
       (net 1 GND))
   )
 
-  (module Capacitors_SMD:C_0805 (layer F.Cu) (tedit 5415D6EA) (tstamp 5A9D07F3)
+  (module lib_fp:C_0805 (layer F.Cu) (tedit 5415D6EA) (tstamp 5A9B0574)
     (at 165.1 114.3)
     (descr "Capacitor SMD 0805, reflow soldering, AVX (see smccp.pdf)")
     (tags "capacitor 0805")
@@ -332,7 +332,7 @@
     )
   )
 
-  (module LEDs:LED_0805 (layer F.Cu) (tedit 55BDE1C2) (tstamp 5A9D07F8)
+  (module lib_fp:LED_0805 (layer F.Cu) (tedit 55BDE1C2) (tstamp 5A9B0579)
     (at 147.32 129.54 270)
     (descr "LED 0805 smd package")
     (tags "LED 0805 SMD")
@@ -376,7 +376,7 @@
     )
   )
 
-  (module LEDs:LED_0603 (layer F.Cu) (tedit 55BDE255) (tstamp 5A9D07FD)
+  (module lib_fp:LED_0603 (layer F.Cu) (tedit 55BDE255) (tstamp 5A9B057E)
     (at 171.45 129.71 270)
     (descr "LED 0603 smd package")
     (tags "LED led 0603 SMD smd SMT smt smdled SMDLED smtled SMTLED")
@@ -418,7 +418,7 @@
     )
   )
 
-  (module TO_SOT_Packages_SMD:SOT-23 (layer F.Cu) (tedit 583F39EB) (tstamp 5A9D0802)
+  (module lib_fp:SOT-23 (layer F.Cu) (tedit 583F39EB) (tstamp 5A9B0583)
     (at 172.72 121.69 270)
     (descr "SOT-23, Standard")
     (tags SOT-23)
@@ -455,7 +455,7 @@
     )
   )
 
-  (module Resistors_SMD:R_0805 (layer F.Cu) (tedit 58307B54) (tstamp 5A9D0808)
+  (module lib_fp:R_0805 (layer F.Cu) (tedit 58307B54) (tstamp 5A9B0589)
     (at 152.4 130.81 180)
     (descr "Resistor SMD 0805, reflow soldering, Vishay (see dcrcw.pdf)")
     (tags "resistor 0805")
@@ -488,7 +488,7 @@
     )
   )
 
-  (module Resistors_SMD:R_0805 (layer F.Cu) (tedit 58307B54) (tstamp 5A9D080D)
+  (module lib_fp:R_0805 (layer F.Cu) (tedit 58307B54) (tstamp 5A9B058E)
     (at 165.1 118.11)
     (descr "Resistor SMD 0805, reflow soldering, Vishay (see dcrcw.pdf)")
     (tags "resistor 0805")
@@ -521,7 +521,7 @@
     )
   )
 
-  (module Resistors_SMD:R_0805 (layer F.Cu) (tedit 58307B54) (tstamp 5A9D0812)
+  (module lib_fp:R_0805 (layer F.Cu) (tedit 58307B54) (tstamp 5A9B0593)
     (at 167.64 129.54 270)
     (descr "Resistor SMD 0805, reflow soldering, Vishay (see dcrcw.pdf)")
     (tags "resistor 0805")
@@ -554,7 +554,7 @@
     )
   )
 
-  (module Resistors_SMD:R_0805 (layer F.Cu) (tedit 58307B54) (tstamp 5A9D081C)
+  (module lib_fp:R_0805 (layer F.Cu) (tedit 58307B54) (tstamp 5A9B0598)
     (at 160.274 144.695001)
     (descr "Resistor SMD 0805, reflow soldering, Vishay (see dcrcw.pdf)")
     (tags "resistor 0805")
@@ -587,7 +587,7 @@
     )
   )
 
-  (module kicad-libs:e-switch-TL-3340-AF160QG (layer F.Cu) (tedit 5A99C339) (tstamp 5A9D082B)
+  (module lib_fp:e-switch-TL-3340-AF160QG (layer F.Cu) (tedit 5A99C339) (tstamp 5A9B059D)
     (at 160.274 144.695001)
     (descr https://www.mouser.com/ds/2/140/TL3340-346332.pdf)
     (tags "switch button sw")
@@ -614,7 +614,7 @@
     (pad "" np_thru_hole circle (at -2.125 0) (size 0.9 0.9) (drill 0.9) (layers *.Cu *.Mask))
   )
 
-  (module kicad-libs:SSSS810701 (layer F.Cu) (tedit 5A99C61A) (tstamp 5A9D0843)
+  (module lib_fp:SSSS810701 (layer F.Cu) (tedit 5A99C61A) (tstamp 5A9B05A7)
     (at 160.274 144.695001)
     (descr http://www.alps.com/prod/info/E/HTML/Switch/Slide/SSSS8/SSSS810701.html)
     (tags "slide switch spdt")
@@ -650,7 +650,7 @@
     (pad "" smd rect (at 3.65 1.1) (size 1 0.8) (layers F.Cu F.Paste F.Mask))
   )
 
-  (module kicad-libs:ATtiny45V-10XU-TSSOP-8 (layer F.Cu) (tedit 0) (tstamp 5A9D0844)
+  (module lib_fp:ATtiny45V-10XU-TSSOP-8 (layer F.Cu) (tedit 0) (tstamp 5A9B05B3)
     (at 157.48 115.57 270)
     (descr http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-2586-AVR-8-bit-Microcontroller-ATtiny25-ATtiny45-ATtiny85_Datasheet.pdf)
     (tags "TSSOP 0.65")
