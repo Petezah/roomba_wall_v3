@@ -1,4 +1,4 @@
-(module kicad-libs:ATtiny45V-10XU-TSSOP-8 (layer F.Cu) (tedit 0)
+(module lib_fp:ATtiny45V-10XU-TSSOP-8 (layer F.Cu) (tedit 0)
   (descr http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-2586-AVR-8-bit-Microcontroller-ATtiny25-ATtiny45-ATtiny85_Datasheet.pdf)
   (tags "TSSOP 0.65")
   (fp_text reference U1 (at -2.825 0 90) (layer F.SilkS)

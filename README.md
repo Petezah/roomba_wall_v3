@@ -1,19 +1,15 @@
 # roomba_wall_v3
 
-# WIP - see "develop" branch for current work; currently "master" is the "v2" state of things
-
 An AVR device, based on ATTiny45, to transmit a virtual wall signal for an iRobot Roomba
 
-<img src="https://github.com/Petezah/roomba_wall_v3/blob/master/roomba_wall_v2.jpg"/>
+<img src="roomba_wall_v3.jpg"/>
 
 ## Folder layout
 
 * /firmware
-  * Source for the ATTiny85 firmware
+  * Source for the ATTiny45 firmware
 * /hardware
   * Files describing the board layout, etc
-* /christmas_tree_barrier
-  * Files describing the board layout for the Christmas tree barrier variation
 
 ## Building
 
@@ -30,11 +26,11 @@ An AVR device, based on ATTiny45, to transmit a virtual wall signal for an iRobo
 
 #### hardware
 
-* Order a board based on the files in https://github.com/Petezah/roomba_wall_v2/tree/master/hardware
-  * Alternately, order one directly from OSH Park here: https://oshpark.com/shared_projects/yCviCn7Z
+* Order a board based on the files in https://github.com/Petezah/roomba_wall_v3/tree/master/hardware
+  * Alternately, order one directly from OSH Park here: https://oshpark.com/shared_projects/tSvcCbKP
 * Purchase parts from [Mouser electronics](http://mouser.com) using the current BOM
   * Use the ones with "mouser" in their filenames
-* Assemble the board--parts are all marked on the silkscreen
+* Assemble the board--part references are all marked on the silkscreen
   * NB: The ISP header should not be soldered to the board--merely insert the header pins into the IDC cable and wedge the pins into the vias during programming
 
 #### firmware

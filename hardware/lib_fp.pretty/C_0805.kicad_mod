@@ -1,4 +1,4 @@
-(module Capacitors_SMD:C_0805 (layer F.Cu) (tedit 5415D6EA)
+(module lib_fp:C_0805 (layer F.Cu) (tedit 5415D6EA)
   (descr "Capacitor SMD 0805, reflow soldering, AVX (see smccp.pdf)")
   (tags "capacitor 0805")
   (attr smd)

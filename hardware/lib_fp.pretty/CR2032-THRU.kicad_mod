@@ -1,4 +1,4 @@
-(module kicad-libs:CR2032-THRU (layer F.Cu) (tedit 5A99CBBC)
+(module lib_fp:CR2032-THRU (layer F.Cu) (tedit 5A99CBBC)
   (tags "cr2032 battery th")
   (fp_text reference BT1 (at -0.2032 -2.4638) (layer Eco1.User)
     (effects (font (size 1.6764 1.6764) (thickness 0.13208)))

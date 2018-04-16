@@ -1,4 +1,4 @@
-(module kicad-libs:e-switch-TL-3340-AF160QG (layer F.Cu) (tedit 5A99C339)
+(module lib_fp:e-switch-TL-3340-AF160QG (layer F.Cu) (tedit 5A99C339)
   (descr https://www.mouser.com/ds/2/140/TL3340-346332.pdf)
   (tags "switch button sw")
   (fp_text reference SW1 (at 0 -2.667) (layer F.SilkS)

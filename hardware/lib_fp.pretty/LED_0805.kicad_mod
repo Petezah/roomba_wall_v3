@@ -1,4 +1,4 @@
-(module LEDs:LED_0805 (layer F.Cu) (tedit 55BDE1C2)
+(module lib_fp:LED_0805 (layer F.Cu) (tedit 55BDE1C2)
   (descr "LED 0805 smd package")
   (tags "LED 0805 SMD")
   (attr smd)

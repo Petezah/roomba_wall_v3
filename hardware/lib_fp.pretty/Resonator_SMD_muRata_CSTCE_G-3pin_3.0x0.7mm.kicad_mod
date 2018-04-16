@@ -1,4 +1,4 @@
-(module kicad-libs:Resonator_SMD_muRata_CSTCE_G-3pin_3.0x0.7mm (layer F.Cu) (tedit 5A1DD9EF)
+(module lib_fp:Resonator_SMD_muRata_CSTCE_G-3pin_3.0x0.7mm (layer F.Cu) (tedit 5A1DD9EF)
   (fp_text reference Y1 (at 0 -2) (layer F.SilkS)
     (effects (font (size 1 1) (thickness 0.15)))
   )
