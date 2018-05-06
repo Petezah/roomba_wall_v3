@@ -16,7 +16,7 @@
 // Whynter A/C ARC-110WD added by Francesco Meschia
 //******************************************************************************
 
-#include "roomba_wall_v2.h"
+#include "roomba_wall_v3.h"
 #include <avr/io.h>
 
 //------------------------------------------------------------------------------

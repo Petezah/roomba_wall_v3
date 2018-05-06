@@ -86,7 +86,7 @@ BB = Which Beam
 
 */
 
-#include "roomba_wall_v2.h"
+#include "roomba_wall_v3.h"
 
 void roomba_send(int code)
 {
@@ -99,22 +99,26 @@ void roomba_send(int code)
 
 	int arrayposition = 0;
 	// Serial.println("");
-	for (int counter = length - 1; counter >= 0; --counter) {
-		if (code & (1 << counter)) {
+	for (int counter = length - 1; counter >= 0; --counter)
+	{
+		if (code & (1 << counter))
+		{
 			// Serial.print("1");
 			raw[arrayposition] = one_pulse;
 			raw[arrayposition + 1] = one_break;
 		}
-		else {
+		else
+		{
 			// Serial.print("0");
 			raw[arrayposition] = zero_pulse;
 			raw[arrayposition + 1] = zero_break;
 		}
 		arrayposition = arrayposition + 2;
 	}
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 3; i++)
+	{
 		sendRawIR(raw, 15, 38); //irsend.sendRaw(raw, 15, 38);  // Based on IRRemote library
-		delay_ten_us(5000); //50ms = 50000us
+		delay_ten_us(5000);			//50ms = 50000us
 	}
 	//Serial.println("");
 }
