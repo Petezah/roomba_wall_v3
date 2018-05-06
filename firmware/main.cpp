@@ -28,8 +28,20 @@ volatile uint8_t g_debounceDownCounter = 0;
 volatile uint8_t g_debounceUpCounter = 0;
 volatile uint8_t g_numPresses = 0;
 
+#ifdef HALF_HOUR_PER_BLINK
 #define NUM_TIMER_TICKS_PER_PRESS 3600; // run for 1/2hr per setting: 3600 = 60s * 30m * 2, since 1 tick per .5s
+#else // QUARTER_HOUR_PER_BLINK
+#define NUM_TIMER_TICKS_PER_PRESS 1800; // run for 1/4hr per setting: 1800 = 60s * 15m * 2, since 1 tick per .5s
+#endif
 volatile int g_numTicksUntilDisabled = 0;
+
+#ifdef ROOMBA_WALL_V2
+#define IR_TX_DELAY 50000
+#elif ROOMBA_WALL_V3
+#define IR_TX_DELAY 30000
+#else // others (eg. Christmas barrier)
+#define IR_TX_DELAY 10000
+#endif
 
 void sleep_until_interrupt()
 {
@@ -109,12 +121,9 @@ int main(void)
 
 			roomba_send(162); // Virtual Wall
 			PORTB &= ~_BV(0); // digitalWrite(4, LOW);
-#ifdef ROOMBA_WALL_V2
-			delay_ten_us(50000);
-#else // others (eg. Christmas barrier)
-			delay_ten_us(10000);
+
+			delay_ten_us(IR_TX_DELAY);
 			break;
-#endif
 		case RS_InitCounter:
 			g_state = RS_Counter;
 			lastBlinkTick = g_lastTimerTicks;
