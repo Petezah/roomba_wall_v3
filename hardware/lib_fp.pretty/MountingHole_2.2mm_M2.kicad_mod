@@ -1,4 +1,4 @@
-(module lib_fp:MountingHole_2.2mm_M2 (layer F.Cu) (tedit 5A1DE19F)
+(module lib_fp:MountingHole_2.2mm_M2 locked (layer F.Cu) (tedit 5A1DE19F)
   (descr "Mounting Hole 2.2mm, no annular, M2")
   (tags "mounting hole 2.2mm no annular m2")
   (attr virtual)

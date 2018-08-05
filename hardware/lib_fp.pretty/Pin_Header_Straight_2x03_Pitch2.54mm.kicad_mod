@@ -1,7 +1,7 @@
 (module lib_fp:Pin_Header_Straight_2x03_Pitch2.54mm (layer F.Cu) (tedit 59650532)
   (descr "Through hole straight pin header, 2x03, 2.54mm pitch, double rows")
   (tags "Through hole pin header THT 2x03 2.54mm double row")
-  (fp_text reference CON1 (at 1.27 -2.33) (layer F.SilkS)
+  (fp_text reference CON1 (at -2.54 0 90) (layer F.SilkS)
     (effects (font (size 1 1) (thickness 0.15)))
   )
   (fp_text value AVR-ISP-6 (at 1.27 7.41) (layer F.Fab)

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>C:/Users/peter/Source/Repos/roomba_wall_v3/hardware/roomba_wall_v3.sch</source>
+    <date>8/5/2018 3:34:51 PM</date>
+    <tool>Eeschema 4.0.7</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title>Roomba Wall V3</title>
+        <company>Petezah</company>
+        <rev>B</rev>
+        <date>2018-08-03</date>
+        <source>roomba_wall_v3.sch</source>
+        <comment number="1" value="(C) 2018 Peter Dunshee"/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="U1">
+      <value>ATTINY45-20SU</value>
+      <footprint>lib_fp:ATtiny45V-10XU-TSSOP-8</footprint>
+      <libsource lib="roomba_wall_v3" part="ATTINY45-20SU"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A1B3BA1</tstamp>
+    </comp>
+    <comp ref="Y1">
+      <value>8Mhz</value>
+      <footprint>lib_fp:Resonator_SMD_muRata_CSTCE_G-3pin_3.0x0.7mm</footprint>
+      <libsource lib="roomba_wall_v3" part="Resonator"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A1C6357</tstamp>
+    </comp>
+    <comp ref="R1">
+      <value>560</value>
+      <footprint>lib_fp:R_0805</footprint>
+      <libsource lib="roomba_wall_v3" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A1C64F1</tstamp>
+    </comp>
+    <comp ref="R2">
+      <value>560</value>
+      <footprint>lib_fp:R_0805</footprint>
+      <libsource lib="roomba_wall_v3" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A1C657A</tstamp>
+    </comp>
+    <comp ref="R3">
+      <value>51</value>
+      <footprint>lib_fp:R_0805</footprint>
+      <libsource lib="roomba_wall_v3" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A1C65A3</tstamp>
+    </comp>
+    <comp ref="D1">
+      <value>LED</value>
+      <footprint>lib_fp:LED_0805</footprint>
+      <libsource lib="roomba_wall_v3" part="LED"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A1C65D6</tstamp>
+    </comp>
+    <comp ref="D2">
+      <value>IR_LED</value>
+      <footprint>kicad-libs:VSMB3940X01-GS08</footprint>
+      <libsource lib="roomba_wall_v3" part="LED"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A1C66BD</tstamp>
+    </comp>
+    <comp ref="CON1">
+      <value>AVR-ISP-6</value>
+      <footprint>lib_fp:Pin_Header_Straight_2x03_Pitch2.54mm</footprint>
+      <libsource lib="roomba_wall_v3" part="AVR-ISP-6"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A1C6CE7</tstamp>
+    </comp>
+    <comp ref="C2">
+      <value>10uF</value>
+      <footprint>lib_fp:C_0805</footprint>
+      <libsource lib="roomba_wall_v3" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A1C75DA</tstamp>
+    </comp>
+    <comp ref="Q1">
+      <value>Q_NPN_BEC</value>
+      <footprint>lib_fp:SOT-23</footprint>
+      <libsource lib="roomba_wall_v3" part="Q_NPN_BEC"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A1CDA3E</tstamp>
+    </comp>
+    <comp ref="BT1">
+      <value>Battery_Cell</value>
+      <footprint>lib_fp:CR2032-THRU</footprint>
+      <libsource lib="roomba_wall_v3" part="Battery_Cell"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A96233E</tstamp>
+    </comp>
+    <comp ref="SW1">
+      <value>Button</value>
+      <footprint>lib_fp:e-switch-TL-3340-AF160QG</footprint>
+      <libsource lib="roomba_wall_v3" part="SW_Push"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A9628F7</tstamp>
+    </comp>
+    <comp ref="R4">
+      <value>10k</value>
+      <footprint>lib_fp:R_0805</footprint>
+      <libsource lib="roomba_wall_v3" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A962AB2</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="roomba_wall_v3" part="ATTINY25-20SU">
+      <aliases>
+        <alias>ATTINY45-20SU</alias>
+        <alias>ATTINY85-20SU</alias>
+      </aliases>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">ATTINY25-20SU</field>
+        <field name="Footprint">Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm</field>
+      </fields>
+      <pins>
+        <pin num="1" name="PB5(~RESET~/dW/ADC0/PCINT5)" type="BiDi"/>
+        <pin num="2" name="PB3(XTAL1/CLKI/~OC1B~/ADC3/PCINT3)" type="BiDi"/>
+        <pin num="3" name="PB4(XTAL2/CLKO/OC1B/ADC2/PCINT4)" type="BiDi"/>
+        <pin num="4" name="GND" type="power_in"/>
+        <pin num="5" name="PB0(MOSI/DI/SDA/AIN0/OC0A/~OC1A~/AREF/PCINT0)" type="BiDi"/>
+        <pin num="6" name="PB1(MISO/DO/AIN1/OC0B/OC1A/PCINT1)" type="BiDi"/>
+        <pin num="7" name="PB2(SCK/USCK/SCL/T0/INT0/ADC1/PCINT2)" type="BiDi"/>
+        <pin num="8" name="VCC" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="roomba_wall_v3" part="AVR-ISP-6">
+      <fields>
+        <field name="Reference">CON</field>
+        <field name="Value">AVR-ISP-6</field>
+        <field name="Footprint">AVR-ISP-6</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+        <pin num="3" name="~" type="passive"/>
+        <pin num="4" name="~" type="passive"/>
+        <pin num="5" name="~" type="passive"/>
+        <pin num="6" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="roomba_wall_v3" part="Battery_Cell">
+      <fields>
+        <field name="Reference">BT</field>
+        <field name="Value">Battery_Cell</field>
+      </fields>
+      <pins>
+        <pin num="1" name="+" type="passive"/>
+        <pin num="2" name="-" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="roomba_wall_v3" part="C">
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="roomba_wall_v3" part="LED">
+      <footprints>
+        <fp>LED*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">LED</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="roomba_wall_v3" part="Q_NPN_BEC">
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">Q_NPN_BEC</field>
+      </fields>
+      <pins>
+        <pin num="1" name="B" type="input"/>
+        <pin num="2" name="E" type="passive"/>
+        <pin num="3" name="C" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="roomba_wall_v3" part="R">
+      <footprints>
+        <fp>R_*</fp>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="roomba_wall_v3" part="Resonator">
+      <footprints>
+        <fp>Filter*</fp>
+        <fp>Resonator*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">Y</field>
+        <field name="Value">Resonator</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+        <pin num="3" name="3" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="roomba_wall_v3" part="SW_Push">
+      <fields>
+        <field name="Reference">SW</field>
+        <field name="Value">SW_Push</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="roomba_wall_v3">
+      <uri>C:\Users\peter\Source\Repos\roomba_wall_v3\hardware\lib_sch\roomba_wall_v3.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="/SCK/BUTTON">
+      <node ref="U1" pin="7"/>
+      <node ref="SW1" pin="2"/>
+      <node ref="R4" pin="1"/>
+      <node ref="CON1" pin="3"/>
+    </net>
+    <net code="2" name="Net-(Q1-Pad1)">
+      <node ref="Q1" pin="1"/>
+      <node ref="R2" pin="2"/>
+    </net>
+    <net code="3" name="GND">
+      <node ref="R4" pin="2"/>
+      <node ref="C2" pin="2"/>
+      <node ref="U1" pin="4"/>
+      <node ref="Y1" pin="2"/>
+      <node ref="BT1" pin="2"/>
+      <node ref="CON1" pin="6"/>
+      <node ref="D1" pin="1"/>
+      <node ref="Q1" pin="2"/>
+    </net>
+    <net code="4" name="+3V3">
+      <node ref="U1" pin="8"/>
+      <node ref="BT1" pin="1"/>
+      <node ref="R3" pin="1"/>
+      <node ref="CON1" pin="2"/>
+      <node ref="C2" pin="1"/>
+      <node ref="SW1" pin="1"/>
+    </net>
+    <net code="5" name="/RST">
+      <node ref="CON1" pin="5"/>
+      <node ref="U1" pin="1"/>
+    </net>
+    <net code="6" name="/MISO/IR">
+      <node ref="R2" pin="1"/>
+      <node ref="U1" pin="6"/>
+      <node ref="CON1" pin="1"/>
+    </net>
+    <net code="7" name="/MOSI/INDICATOR">
+      <node ref="U1" pin="5"/>
+      <node ref="CON1" pin="4"/>
+      <node ref="R1" pin="1"/>
+    </net>
+    <net code="8" name="Net-(D2-Pad1)">
+      <node ref="D2" pin="1"/>
+      <node ref="Q1" pin="3"/>
+    </net>
+    <net code="9" name="Net-(U1-Pad3)">
+      <node ref="Y1" pin="3"/>
+      <node ref="U1" pin="3"/>
+    </net>
+    <net code="10" name="Net-(U1-Pad2)">
+      <node ref="Y1" pin="1"/>
+      <node ref="U1" pin="2"/>
+    </net>
+    <net code="11" name="Net-(D1-Pad2)">
+      <node ref="D1" pin="2"/>
+      <node ref="R1" pin="2"/>
+    </net>
+    <net code="12" name="Net-(D2-Pad2)">
+      <node ref="D2" pin="2"/>
+      <node ref="R3" pin="2"/>
+    </net>
+  </nets>
+</export>
