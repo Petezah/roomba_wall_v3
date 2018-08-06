@@ -12,3 +12,5 @@ deploy:
   skip_cleanup: true
   on:
     repo: Petezah/roomba_wall_v3
+    all_branches: true
+    condition: $TRAVIS_BRANCH =~ ^master|develop$
