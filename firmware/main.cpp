@@ -14,42 +14,44 @@
 
 enum run_state
 {
-	RS_Sleeping = 0,
-	RS_Running,
-	RS_InitCounter,
-	RS_Counter,
-	RS_TimeSet
+	RS_Sleeping = 0,	// device sleeping
+	RS_Running,			// running, normal
+	RS_RunningShutdown, // running, in possible shut-down process
+	RS_InitCounter,		// start-up, init the counter process
+	RS_Counter,			// running the counter process
+	RS_TimeSet			// setting the timer, proceeds to running state
 };
-volatile run_state g_state = RS_Sleeping;		// current state-machine state
-volatile uint32_t g_timerTicks = 0;					// number of TIMER1 ticks since power-on
-volatile uint32_t g_lastTimerTicks = 0;			// used to time operations in various places
-volatile int g_counter = 0;									// saves the state-counter value between iterations
+volatile run_state g_state = RS_Sleeping;   // current state-machine state
+volatile uint32_t g_timerTicks = 0;			// number of TIMER1 ticks since power-on
+volatile uint32_t g_lastTimerTicks = 0;		// used to time operations in various places
+volatile int g_counter = 0;					// saves the state-counter value between iterations
 volatile uint8_t g_debounceDownCounter = 0; // how long the button has been depressed
-volatile uint8_t g_debounceUpCounter = 0;		// how long the button has been released
-volatile uint8_t g_setTimeCount = 0;				// records the number of time units the user has set the device to run for
+volatile uint8_t g_debounceUpCounter = 0;   // how long the button has been released
+volatile uint8_t g_setTimeCount = 0;		// records the number of time units the user has set the device to run for
 
 #ifdef HALF_HOUR_PER_BLINK
 #define NUM_TIMER_TICKS_PER_PRESS 3600; // run for 1/2hr per setting: 3600 = 60s * 30m * 2, since 1 tick per .5s
-#else // QUARTER_HOUR_PER_BLINK
+#else									// QUARTER_HOUR_PER_BLINK
 #define NUM_TIMER_TICKS_PER_PRESS 1800; // run for 1/4hr per setting: 1800 = 60s * 15m * 2, since 1 tick per .5s
 #endif
+#define DEFAULT_NUM_TICKS_UNTIL_DISABLED (3 /*hours*/ * 60 /*minutes*/ * 60 /*seconds*/ * 2 /*seconds per tick*/)
 volatile int g_numTicksUntilDisabled = 0;
 
 #ifdef ROOMBA_WALL_V2
 #define IR_TX_DELAY 50000
 #elif ROOMBA_WALL_V3
-#define IR_TX_DELAY 30000
+#define IR_TX_DELAY 25000
 #else // others (eg. Christmas barrier)
 #define IR_TX_DELAY 10000
 #endif
 
 void sleep_until_interrupt()
 {
-	MCUCR |= _BV(SE);		//sleep enable bit
+	MCUCR |= _BV(SE);   //sleep enable bit
 	GIMSK |= _BV(PCIE); // Enable pin-change interrupts to wake us up
 	sleep_mode();
 	GIMSK &= ~_BV(PCIE); // Disable pin-change interrupts
-	MCUCR &= ~_BV(SE);	 // clear sleep enable bit
+	MCUCR &= ~_BV(SE);   // clear sleep enable bit
 }
 
 void blink_led(uint8_t numTimes, bool fastDelay = false)
@@ -76,21 +78,21 @@ int main(void)
 	ACSR |= _BV(ACD); // analog comparator disable
 
 	// Set up timer1 to trigger every 1/2 second
-	TCCR1 |= _BV(CTC1);																			// enable timer compare match CTC1
+	TCCR1 |= _BV(CTC1);										// enable timer compare match CTC1
 	TCCR1 |= _BV(CS13) | _BV(CS12) | _BV(CS11) | _BV(CS10); // set prescaler ck/16384 (1/(8Mhz/16384) = 2.048 ms)
-	OCR1C = 244;																						// count to 1/2 seconds (2.048ms * 244 = .5s)
-	TIMSK |= _BV(OCIE1A);																		// enable compare match irq
+	OCR1C = 244;											// count to 1/2 seconds (2.048ms * 244 = .5s)
+	TIMSK |= _BV(OCIE1A);									// enable compare match irq
 
 	// Set interrupt on PB2
-	DDRB &= ~_BV(DDB2);									// PB2 set as input
-	GIMSK |= _BV(INT0);									// enable PCIE interrupt
-	PCMSK |= _BV(PCINT2);								// interrupt on PB2
+	DDRB &= ~_BV(DDB2);					// PB2 set as input
+	GIMSK |= _BV(INT0);					// enable PCIE interrupt
+	PCMSK |= _BV(PCINT2);				// interrupt on PB2
 	MCUCR |= (_BV(ISC01) | _BV(ISC00)); // enable rising edge (ISC01 and ISC00)
-	MCUCR |= _BV(SM1);									// enable power-down for sleep (SM1)
-	sei();															// enable interrupts
+	MCUCR |= _BV(SM1);					// enable power-down for sleep (SM1)
+	sei();								// enable interrupts
 
 	// Red-Status LED
-	DDRB |= _BV(0);		// Set PORTB pin 4 to digital output (equivalent to pinMode(0, OUTPUT))
+	DDRB |= _BV(0);   // Set PORTB pin 4 to digital output (equivalent to pinMode(0, OUTPUT))
 	PORTB &= ~_BV(0); // Pin 0 set to LOW (equivalent to digitalWrite(0, LOW))
 
 #ifdef ROOMBA_WALL_V3
@@ -114,6 +116,15 @@ int main(void)
 			sleep_until_interrupt();
 			break;
 
+		case RS_RunningShutdown:
+			// If the button has been pressed for more than 2 seconds,
+			// blink, then shut down the device
+			if (g_debounceDownCounter >= 4)
+			{
+				blink_led(3, true);
+				g_state = RS_Sleeping;
+				i = 0;
+			}
 		case RS_Running:
 			if (g_numTicksUntilDisabled <= 0)
 				g_state = RS_Sleeping;
@@ -159,6 +170,19 @@ int main(void)
 			break;
 
 		case RS_TimeSet:
+			if (g_setTimeCount < 1)
+			{
+				// Button was pressed and released; merely start the default timer
+				g_numTicksUntilDisabled = DEFAULT_NUM_TICKS_UNTIL_DISABLED;
+				g_state = RS_Running;
+
+				// Turn on the LED for 1 second to indicate success of default state
+				PORTB |= _BV(0); //on
+				_delay_ms(1000);
+				PORTB &= ~_BV(0); //off
+				break;
+			}
+
 			i++;
 			if (i >= 2) // 2 seconds
 			{
@@ -182,9 +206,18 @@ ISR(PCINT0_vect)
 
 ISR(INT0_vect)
 {
+	// If we are running, the button will turn off the device
+	if (g_state == RS_Running)
+	{
+		g_counter = 0;
+		g_debounceDownCounter = 0;
+		g_debounceUpCounter = 0;
+		g_lastTimerTicks = g_timerTicks;
+		g_state = RS_RunningShutdown;
+	}
 	// If we are not already initializing or starting the
 	// timer-set counter, then initialize the timer-setter
-	if (g_state != RS_InitCounter && g_state != RS_Counter)
+	else if (g_state != RS_InitCounter && g_state != RS_Counter && g_state != RS_RunningShutdown)
 	{
 		g_counter = 0;
 		g_debounceDownCounter = 0;
