@@ -1,13 +1,20 @@
-MCU=attiny45
-AVRDUDEMCU=t45
-SYSCLOCK=8000000
-CC=/usr/bin/avr-gcc
-CFLAGS=-g -Os -Wall -mcall-prologues -mmcu=$(MCU) -DF_CPU=$(SYSCLOCK) -I./ -DROOMBA_WALL_V3
-OBJ2HEX=/usr/bin/avr-objcopy
-AVRDUDE=/usr/bin/avrdude
-AVRSIZE=/usr/bin/avr-size
-SOURCES=main.cpp roomba_send.cpp simple_ir.cpp
-TARGET=roomba_wall_v3
+MCU := attiny45
+AVRDUDEMCU := t45
+SYSCLOCK := 8000000
+CC ?= /usr/bin/avr-gcc
+CFLAGS := -g -Os -Wall -mcall-prologues -mmcu=$(MCU) -DF_CPU=$(SYSCLOCK) -I./ -DROOMBA_WALL_V3
+
+AVRDUDE ?= /usr/bin/avrdude
+ISP_PORT ?= /dev/ttyS10
+ISP_PROGRAMMER ?= stk500v1
+ISP_BAUD ?= 115200
+AVRDUDE_CMD := $(AVRDUDE) -p $(AVRDUDEMCU) -P $(ISP_PORT) -c $(ISP_PROGRAMMER) -b $(ISP_BAUD)
+
+AVRSIZE ?= /usr/bin/avr-size
+OBJ2HEX ?= /usr/bin/avr-objcopy
+
+SOURCES := main.cpp roomba_send.cpp simple_ir.cpp
+TARGET := roomba_wall_v3
 
 all :
 	$(CC) $(CFLAGS) $(SOURCES) -o $(TARGET)
@@ -16,19 +23,10 @@ all :
 	rm -f $(TARGET)
 
 install : all
-	sudo gpio -g mode 22 out
-	sudo gpio -g write 22 0
-	sudo $(AVRDUDE) -p $(AVRDUDEMCU) -P /dev/spidev0.0 -c linuxspi -b 10000 -U flash:w:$(TARGET).hex
-	sudo gpio -g write 22 1
-
-noreset : all
-	sudo $(AVRDUDE) -p $(AVRDUDEMCU) -P /dev/spidev0.0 -c linuxspi -b 10000 -U flash:w:$(TARGET).hex
+	$(AVRDUDE_CMD) -U flash:w:$(TARGET).hex
 
 fuse :
-	sudo gpio -g mode 22 out
-	sudo gpio -g write 22 0
-	sudo $(AVRDUDE) -p $(AVRDUDEMCU) -P /dev/spidev0.0 -c linuxspi -b 10000 -U lfuse:w:0xfd:m -U hfuse:w:0xdf:m -U efuse:w:0xff:m
-	sudo gpio -g write 22 1
+	$(AVRDUDE_CMD) -U lfuse:w:0xfd:m -U hfuse:w:0xdf:m -U efuse:w:0xff:m
 
 clean :
 	rm -f *.hex *.obj *.o
