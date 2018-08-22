@@ -125,6 +125,13 @@ int main(void)
 				g_state = RS_Sleeping;
 				i = 0;
 			}
+			// If the button has been released long enough, revert to Running state
+			if (g_debounceUpCounter >= 2)
+			{
+				g_state = RS_Running;
+				i = 0;
+			}
+			// Fall through to RS_Running
 		case RS_Running:
 			if (g_numTicksUntilDisabled <= 0)
 				g_state = RS_Sleeping;
