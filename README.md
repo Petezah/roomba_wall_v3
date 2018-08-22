@@ -15,19 +15,22 @@ An AVR device, based on ATTiny45, to transmit a virtual wall signal for an iRobo
 
 ### Prerequisites for "happy path":
 
-* Raspberry Pi configured with BCM SPI enabled
+* An AVR programmer
+  * If you don't have one, you can build mine: https://oshpark.com/shared_projects/O24XLDbo
+  * Though, this is a chicken-egg problem.  You can always program the programmer with an Arduino or a Raspberry Pi.
 * AVR-GCC installed
   *  Easiest way to get this is 'sudo apt-get install arduino'
-* Either:
-  * A 6-position, dual-row IDC cable (recommended)
-  * Or jumpers to wire SPI bus of Raspberry Pi to the ISP pads on the finished board
+* A 6-position, dual-row IDC cable
+* A 6-position, dual-row, male header to either:
+  * Solder onto your board for programming, or
+  * Plug into the IDC cable and "wedge" it into the ISP header during programming (recommended, and is what I do)
 
 ### Steps
 
 #### hardware
 
 * Order a board based on the files in https://github.com/Petezah/roomba_wall_v3/tree/master/hardware
-  * Alternately, order one directly from OSH Park here: https://oshpark.com/shared_projects/tSvcCbKP
+  * Alternately, order one directly from OSH Park here: https://oshpark.com/shared_projects/i2FdXslA
 * Purchase parts from [Mouser electronics](http://mouser.com) using the current BOM
   * Use the ones with "mouser" in their filenames
 * Assemble the board--part references are all marked on the silkscreen
@@ -38,11 +41,12 @@ An AVR device, based on ATTiny45, to transmit a virtual wall signal for an iRobo
 There are two methods to wire the board for programming:
 
 * *Recommended way*:
-  *  Order my Raspberry Pi ISP board here: https://oshpark.com/shared_projects/iYtnPahC
+  *  Order my AVR programmer board here: https://oshpark.com/shared_projects/O24XLDbo
   *  Assemble, and use an IDC cable as described above
 
 * Alternate way: 
-  * Hook up the ISP pins on the assembled board to your Raspberry PI as follows:
+  *  Order my Raspberry Pi ISP board here: https://oshpark.com/shared_projects/iYtnPahC
+  * Or hook up the ISP pins on the assembled board to your Raspberry PI as follows:
     * ISP Pin 1 --> Raspberry Pi Pin 21 (MISO)
     * ISP Pin 2 --> Raspberry Pi Pin 17 (3.3V)
     * ISP Pin 3 --> Raspberry Pi Pin 23 (SCK)
