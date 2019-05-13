@@ -59,3 +59,19 @@ Once wiring is accomplished:
   * cd firmware
   * make fuse
   * make install
+
+## Operating
+
+There are a few different ways to operate this device.
+
+### Default (easy) timed mode
+
+When the device is off (sleeping), simply press and release the button once.  The device will respond by turning the indicator LED on for one second and then turning it off.  After this, the device will operate for 3 hours and then go to sleep again.
+
+### Custom timed mode
+
+When the device is off (sleeping), hold down the button.  The device will blink briefly, once every half second.  Every blink corresponds to 15 minutes of operation.  For example, if you want the device to operate for 30 minutes, you will wait for 2 blinks; or, if you want the device to operate for 1 hour and 15 minutes, you will wait for 5 blinks.  Once you reach the desired count, release the button.  The device will then wait, and will then blink the LED indicator the number of times it has counted for the running time.  After this, the device will run for the set time, and then will go to sleep.
+
+### Turning off the device (putting it to sleep manually)
+
+When the device is operating, hold down the button for two seconds.  The device will blink 3 times rapidly.  Now release the button, and the device will blink 2 times rapidly, and will then go to sleep.
