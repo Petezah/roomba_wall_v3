@@ -17,6 +17,7 @@ enum run_state
 	RS_Sleeping = 0,	// device sleeping
 	RS_Running,			// running, normal
 	RS_RunningShutdown, // running, in possible shut-down process
+	RS_ShuttingDown,	// shutdown initiated, debouncing switch before sleep
 	RS_InitCounter,		// start-up, init the counter process
 	RS_Counter,			// running the counter process
 	RS_TimeSet			// setting the timer, proceeds to running state
@@ -116,19 +117,33 @@ int main(void)
 			sleep_until_interrupt();
 			break;
 
+		case RS_ShuttingDown:
+			if (g_debounceUpCounter >= 2)
+			{
+				blink_led(2, true);
+				g_state = RS_Sleeping;
+				g_debounceDownCounter = 0;
+				g_debounceUpCounter = 0;
+				i = 0;
+			}
+			break;
+
 		case RS_RunningShutdown:
 			// If the button has been pressed for more than 2 seconds,
 			// blink, then shut down the device
 			if (g_debounceDownCounter >= 4)
 			{
 				blink_led(3, true);
-				g_state = RS_Sleeping;
+				g_state = RS_ShuttingDown;
+				g_debounceUpCounter = 0;
 				i = 0;
 			}
 			// If the button has been released long enough, revert to Running state
 			if (g_debounceUpCounter >= 2)
 			{
 				g_state = RS_Running;
+				g_debounceDownCounter = 0;
+				g_debounceUpCounter = 0;
 				i = 0;
 			}
 			// Fall through to RS_Running
