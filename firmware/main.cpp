@@ -10,6 +10,7 @@
 #include <avr/power.h>
 #include <avr/interrupt.h>
 #include <avr/sleep.h>
+#include <avr/wdt.h>
 #include <util/delay.h>
 
 enum run_state
@@ -35,7 +36,7 @@ volatile uint8_t g_setTimeCount = 0;		// records the number of time units the us
 #else									// QUARTER_HOUR_PER_BLINK
 #define NUM_TIMER_TICKS_PER_PRESS 1800; // run for 1/4hr per setting: 1800 = 60s * 15m * 2, since 1 tick per .5s
 #endif
-#define DEFAULT_NUM_TICKS_UNTIL_DISABLED (3 /*hours*/ * 60 /*minutes*/ * 60 /*seconds*/ * 2 /*seconds per tick*/)
+#define DEFAULT_NUM_TICKS_UNTIL_DISABLED (2 /*hours*/ * 60 /*minutes*/ * 60 /*seconds*/ * 2 /*seconds per tick*/)
 volatile int g_numTicksUntilDisabled = 0;
 
 #ifdef ROOMBA_WALL_V2
@@ -46,13 +47,18 @@ volatile int g_numTicksUntilDisabled = 0;
 #define IR_TX_DELAY 10000
 #endif
 
+// 4s watchdog timeout
+#define ROOMBA_WALL_WDT_VALUE WDTO_4S
+
 void sleep_until_interrupt()
 {
-	MCUCR |= _BV(SE);   //sleep enable bit
+	wdt_disable();      // disable watchdog
+	MCUCR |= _BV(SE);   // sleep enable bit
 	GIMSK |= _BV(PCIE); // Enable pin-change interrupts to wake us up
 	sleep_mode();
 	GIMSK &= ~_BV(PCIE); // Disable pin-change interrupts
 	MCUCR &= ~_BV(SE);   // clear sleep enable bit
+	wdt_enable(ROOMBA_WALL_WDT_VALUE);
 }
 
 void blink_led(uint8_t numTimes, bool fastDelay = false)
@@ -109,6 +115,7 @@ int main(void)
 	uint32_t lastBlinkTick = 0;
 	while (1)
 	{
+		wdt_reset();
 		i = g_counter;
 		switch (g_state)
 		{
@@ -122,6 +129,7 @@ int main(void)
 			{
 				blink_led(2, true);
 				g_state = RS_Sleeping;
+				delay_ten_us(1000);
 				g_debounceDownCounter = 0;
 				g_debounceUpCounter = 0;
 				i = 0;
@@ -136,6 +144,7 @@ int main(void)
 				blink_led(3, true);
 				g_state = RS_ShuttingDown;
 				g_debounceUpCounter = 0;
+				g_debounceDownCounter = 0;
 				i = 0;
 			}
 			// If the button has been released long enough, revert to Running state

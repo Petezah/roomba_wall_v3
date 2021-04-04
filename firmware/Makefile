@@ -5,7 +5,7 @@ CC := /usr/bin/avr-gcc
 CFLAGS := -g -Os -Wall -mcall-prologues -mmcu=$(MCU) -DF_CPU=$(SYSCLOCK) -I./ -DROOMBA_WALL_V3
 
 AVRDUDE ?= /usr/bin/avrdude
-ISP_PORT ?= /dev/ttyS5
+ISP_PORT ?= /dev/ttyS3
 ISP_PROGRAMMER ?= stk500v1
 ISP_BAUD ?= 115200
 AVRDUDE_CMD := $(AVRDUDE) -p $(AVRDUDEMCU) -P $(ISP_PORT) -c $(ISP_PROGRAMMER) -b $(ISP_BAUD)
