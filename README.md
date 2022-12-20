@@ -10,6 +10,7 @@ An AVR device, based on ATTiny45, to transmit a virtual wall signal for an iRobo
   * Source for the ATTiny45 firmware
 * /hardware
   * Files describing the board layout, etc
+  * Use [KiCad](https://www.kicad.org/) to view/edit
 
 ## Building
 
@@ -44,7 +45,7 @@ There are two methods to wire the board for programming:
   *  Order my AVR programmer board here: https://oshpark.com/shared_projects/O24XLDbo
   *  Assemble, and use an IDC cable as described above
 
-* Alternate way: 
+* Alternate way:
   *  Order my Raspberry Pi ISP board here: https://oshpark.com/shared_projects/iYtnPahC
   * Or hook up the ISP pins on the assembled board to your Raspberry PI as follows:
     * ISP Pin 1 --> Raspberry Pi Pin 21 (MISO)
